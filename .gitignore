@@ -1,0 +1,61 @@
+# Dependencies
+node_modules/
+
+# Environment variables
+.env
+.env.*
+.env.local
+
+# Build output
+dist/
+build/
+public/
+out/
+.next/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Temporary files
+*.tmp
+*.swp
+*.swo
+.DS_Store # macOS
+Thumbs.db # Windows
+
+# Coverage reports
+coverage/
+lcov-report/
+
+# IDE specific files
+.idea/ # IntelliJ IDEA
+.vscode/ # VS Code
+*.sublime-project
+*.sublime-workspace
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Package lock files (if you want to force using yarn or npm)
+# package-lock.json # If you're using yarn.lock
+# yarn.lock # If you're using package-lock.json
+
+# Optional: If you're using Docker
+# Docker build artifacts
+# !Dockerfile # If you want to include the Dockerfile
+# !.dockerignore # If you want to include the .dockerignore
+# docker-compose.yml
+# docker-compose.*.yml
+
+# Optional: If you're using SQLite databases
+*.sqlite
+*.db
+
+# Optional: If you're generating certificates
+*.pem
+*.crt
+*.key
