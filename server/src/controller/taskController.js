@@ -13,14 +13,36 @@ const createTask = async (req, res) => {
 
 const getAllTask = async (req, res) => {
   try {
-    //to do add pagination
-    const allTask = await Task.find();
+    const sort = req.query.sort || "-createdAt";
+    const limit = parseInt(req.query.limit) || 3;
+    const page = parseInt(req.query.page) || 1;
+    const status = req.query.status || "";
 
-    if (allTask.length === 0) {
-      return res.status(404).json({ msg: "No Task Found" });
-    }
+    const skip = (page - 1) * limit;
 
-    return res.status(200).json({ msg: "All Task", allTask });
+    // dynamic filter
+    const query = {};
+    if (status) query.status = status;
+
+    const totalTasks = await Task.countDocuments(query);
+    const totalPages = Math.ceil(totalTasks / limit);
+
+    const allTask = await Task.find(query)
+      .sort(sort)
+      .skip(skip)
+      .limit(limit);
+
+    return res.status(200).json({
+      msg: "All Tasks",
+      tasks: allTask,
+      pagination: {
+        totalTasks,
+        totalPages,
+        currentPage: page,
+        perPage: limit,
+      }
+    });
+    
   } catch (error) {
     console.error(error);
     return res.status(500).json({ msg: "Internal Server Error" });

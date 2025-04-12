@@ -3,7 +3,7 @@ import cors from "cors";
 import connectDB from "./db/connection.js";
 
 import taskRoute from "./router/taskRoute.js";
-const port = process.env.PORT || 9000
+const port = process.env.PORT 
 
 const app = express();
 
